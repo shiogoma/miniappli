@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+   <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+ 
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Miniappli</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <% if user_signed_in? %>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">blog</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="new">新規投稿</a></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>Components</li>
+        <li><a class="name"><%= current_user.nickname %>さん</a></li>
+      </ul>
+       <% else %>
+    <ul class="nav">
+      <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
+      <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
+    </ul>
+    <% end %>
+    </div>
+  </nav>
+
+  <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    
+  <%= yield %>
+  </body>
+</html>
